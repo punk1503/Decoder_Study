@@ -1,24 +1,35 @@
-﻿<Window x:Class="Decoder_Study.MainWindow"
+﻿<Window ResizeMode="CanMinimize" x:Class="Decoder_Study.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Decoder_Study"
         mc:Ignorable="d"
-        Title="Decoder Study" Height="450" Width="800">
-    <Grid>
+        Title="Decoder Study" Height="450" Width="806">
+    <Grid Margin="0,0,4,0" RenderTransformOrigin="0.467,0.496">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="600"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="220"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Grid.Row="0" Content="Зашифровать" Margin="145.2,20,25.6,31.6" Width="200" Height="50"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Дешифровать" Margin="158.2,0.4,38.6,54.4" Width="200" Height="50"/>
+        <TextBox Grid.Row="0" Grid.Column="0" FontSize="20"  Margin ="20" BorderThickness="2.5">Ввод</TextBox>
+        <TextBox Grid.Row="1" Grid.Column="0" FontSize="20" Margin ="20" BorderThickness="2.5">Вывод</TextBox>
+        <Button Grid.Row="0" Grid.Column="1" Margin="20">Зашифровать</Button>
+        <Button Grid.Row="1" Grid.Column="1" Margin="20">Дешифровтаь</Button>
 
+        <StackPanel VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <Label HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" FontSize="15">Выберите алгоритм</Label>
+            <ComboBox Grid.Row="2" Grid.Column="1" Margin="10" Height="25" VerticalAlignment="Top">
+                <ComboBoxItem>0: Начало</ComboBoxItem>
+                <ComboBoxItem>1: Шифр Цезаря</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <Button Margin="20" Padding="10"> Настройки</Button>
+        </StackPanel>
     </Grid>
 </Window>
