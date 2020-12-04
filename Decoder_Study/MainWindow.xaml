@@ -16,16 +16,16 @@
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="220"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox x:Name="Input_TextBox" Grid.Column="0" FontSize="20"  Margin ="20" BorderThickness="2.5">Ввод</TextBox>
-        <TextBox x:Name="Output_TextBox" Grid.Row="1" Grid.Column="0" FontSize="20" Margin ="20" BorderThickness="2.5">Вывод</TextBox>
+        <TextBox x:Name="Input_TextBox" Grid.Column="0" FontSize="20"  Margin ="20" BorderThickness="2.5"></TextBox>
+        <TextBox x:Name="Output_TextBox" Grid.Row="1" Grid.Column="0" FontSize="20" Margin ="20" BorderThickness="2.5"></TextBox>
         <Button Grid.Row="0" Grid.Column="1" Margin="20" Click="Encode_Click">Зашифровать</Button>
         <Button Grid.Row="1" Grid.Column="1" Margin="20" Click="Decode_Click">Дешифровтаь</Button>
 
-        <StackPanel VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+        <StackPanel VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Orientation="Vertical" Margin="0,0,4,0">
             <Label HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" FontSize="15">Выберите алгоритм</Label>
-            <ComboBox SelectionChanged="Cipher_SelectionChanged" Grid.Row="2" Grid.Column="1" Margin="10" Height="25" VerticalAlignment="Top">
-                <ComboBoxItem>0: Начало</ComboBoxItem>
-                <ComboBoxItem>1: Шифр Цезаря</ComboBoxItem>
+            <ComboBox x:Name="CipherComboBox" SelectedValuePath="Content" SelectionChanged="Cipher_SelectionChanged" Grid.Row="2" Grid.Column="1" Margin="10" Height="25" VerticalAlignment="Top">
+                <ComboBoxItem x:Name="StartComboBoxItem">0: Начало</ComboBoxItem>
+                <ComboBoxItem x:Name="CaesarComboBoxItem">1: Шифр Цезаря</ComboBoxItem>
             </ComboBox>
             <Label x:Name="parameter_Label" Margin="5" FontSize="15" Visibility="Hidden" IsEnabled="False">Параметр</Label>
             <TextBox x:Name="parameter_TextBox" Margin="5" Height="25" Visibility="Hidden" IsEnabled="False"></TextBox>

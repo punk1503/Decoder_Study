@@ -9,13 +9,34 @@ namespace Decoder_Study
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Cipher currentCipher;
-        private int parameter;
-        private string selectedCipher = string.Empty;
+        private Cipher currentCipher = new Start();
+        private int parameter = 0;
+        private string selectedCipher;
 
         public MainWindow()
         {
             InitializeComponent();
+            StartComboBoxItem.IsSelected = true;
+            currentCipher = new Start();
+            parameter = 0;
+            selectedCipher = CipherComboBox.SelectedValue.ToString();
+        }
+
+        private void ShowParameter()
+        {
+            currentCipher = new Caesar();
+            parameter_Label.Visibility = Visibility.Visible;
+            parameter_Label.IsEnabled = true;
+            parameter_TextBox.Visibility = Visibility.Visible;
+            parameter_TextBox.IsEnabled = true;
+        }
+
+        private void HideParameter()
+        {
+            parameter_Label.Visibility = Visibility.Hidden;
+            parameter_Label.IsEnabled = false;
+            parameter_TextBox.Visibility = Visibility.Hidden;
+            parameter_TextBox.IsEnabled = false;
         }
 
         private void Encode_Click(object sender, RoutedEventArgs e)
@@ -42,28 +63,20 @@ namespace Decoder_Study
 
         private void Cipher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
+            selectedCipher = CipherComboBox.SelectedValue.ToString();
+            if (selectedCipher == "0: Начало")
             {
-                selectedCipher = (sender as ComboBox).SelectedItem.ToString();
+                HideParameter();
+                currentCipher = new Start();
             }
-            catch
+            if (selectedCipher == "1: Шифр Цезаря")
             {
-                Console.WriteLine("LOG: exception occured while selecting cipher ");
-            }
-            if (selectedCipher == "System.Windows.Controls.ComboBoxItem: 1: Шифр Цезаря")
-            {
+                ShowParameter();
                 currentCipher = new Caesar();
-                parameter_Label.Visibility = Visibility.Visible;
-                parameter_Label.IsEnabled = true;
-                parameter_TextBox.Visibility = Visibility.Visible;
-                parameter_TextBox.IsEnabled = true;
             }
             else
             {
-                parameter_Label.Visibility = Visibility.Hidden;
-                parameter_Label.IsEnabled = false;
-                parameter_TextBox.Visibility = Visibility.Hidden;
-                parameter_TextBox.IsEnabled = false;
+                HideParameter();
             }
             Console.WriteLine(selectedCipher);
         }
