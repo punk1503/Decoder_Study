@@ -16,20 +16,22 @@
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="220"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Grid.Column="0" FontSize="20"  Margin ="20" BorderThickness="2.5">Ввод</TextBox>
-        <TextBox Grid.Row="1" Grid.Column="0" FontSize="20" Margin ="20" BorderThickness="2.5">Вывод</TextBox>
-        <Button Grid.Row="0" Grid.Column="1" Margin="20">Зашифровать</Button>
-        <Button Grid.Row="1" Grid.Column="1" Margin="20">Дешифровтаь</Button>
+        <TextBox x:Name="Input_TextBox" Grid.Column="0" FontSize="20"  Margin ="20" BorderThickness="2.5">Ввод</TextBox>
+        <TextBox x:Name="Output_TextBox" Grid.Row="1" Grid.Column="0" FontSize="20" Margin ="20" BorderThickness="2.5">Вывод</TextBox>
+        <Button Grid.Row="0" Grid.Column="1" Margin="20" Click="Encode_Click">Зашифровать</Button>
+        <Button Grid.Row="1" Grid.Column="1" Margin="20" Click="Decode_Click">Дешифровтаь</Button>
 
         <StackPanel VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Orientation="Vertical">
             <Label HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" FontSize="15">Выберите алгоритм</Label>
-            <ComboBox Grid.Row="2" Grid.Column="1" Margin="10" Height="25" VerticalAlignment="Top">
+            <ComboBox SelectionChanged="Cipher_SelectionChanged" Grid.Row="2" Grid.Column="1" Margin="10" Height="25" VerticalAlignment="Top">
                 <ComboBoxItem>0: Начало</ComboBoxItem>
                 <ComboBoxItem>1: Шифр Цезаря</ComboBoxItem>
             </ComboBox>
+            <Label x:Name="Parametr_Label" Margin="5" FontSize="15" Visibility="Hidden" IsEnabled="False">Параметр</Label>
+            <TextBox x:Name="Parametr_TextBox" Margin="5" Height="25" Visibility="Hidden" IsEnabled="False"></TextBox>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" Orientation="Vertical">
-            <Button Margin="20" Padding="10"> Настройки</Button>
+            <Button Margin="20" Padding="10">Настройки</Button>
         </StackPanel>
     </Grid>
 </Window>
