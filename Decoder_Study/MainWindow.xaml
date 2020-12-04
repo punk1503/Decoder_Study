@@ -31,7 +31,9 @@
             <TextBox x:Name="parameter_TextBox" Margin="5" Height="25" Visibility="Hidden" IsEnabled="False"></TextBox>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" Orientation="Vertical">
-            <Button Margin="20" Padding="10">Настройки</Button>
+            <Button HorizontalAlignment="Right" Margin="20" Padding="10" Width="50" Height="50">
+                <Image Stretch="Fill" Source="Images/settings.ico"></Image>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>
