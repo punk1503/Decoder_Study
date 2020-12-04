@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Decoder_Study
 {
@@ -21,7 +10,8 @@ namespace Decoder_Study
     public partial class MainWindow : Window
     {
         private Cipher currentCipher;
-        private int parametr;
+        private int parameter;
+        private string selectedCipher = string.Empty;
 
         public MainWindow()
         {
@@ -30,35 +20,50 @@ namespace Decoder_Study
 
         private void Encode_Click(object sender, RoutedEventArgs e)
         {
-            Int32.TryParse(Parametr_TextBox.Text, out parametr);
-            Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parametr);
-            Console.WriteLine("Encode");
+            Int32.TryParse(parameter_TextBox.Text, out parameter);
+            try
+            {
+                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parameter);
+                Console.WriteLine("Encode");
+            }
+            catch { Console.WriteLine("LOG: exception occured in Encode_Click"); }
         }
 
         private void Decode_Click(object sender, RoutedEventArgs e)
         {
-            Int32.TryParse(Parametr_TextBox.Text, out parametr);
-            Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text, parametr);
-            Console.WriteLine("Decode");
+            Int32.TryParse(parameter_TextBox.Text, out parameter);
+            try
+            {
+                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text, parameter);
+                Console.WriteLine("LOG: Decode");
+            }
+            catch { Console.WriteLine("LOG: exception occured in Decode_Click"); }
         }
 
         private void Cipher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string selectedCipher = (sender as ComboBox).SelectedItem.ToString();
+            try
+            {
+                selectedCipher = (sender as ComboBox).SelectedItem.ToString();
+            }
+            catch
+            {
+                Console.WriteLine("LOG: exception occured while selecting cipher ");
+            }
             if (selectedCipher == "System.Windows.Controls.ComboBoxItem: 1: Шифр Цезаря")
             {
                 currentCipher = new Caesar();
-                Parametr_Label.Visibility = Visibility.Visible;
-                Parametr_Label.IsEnabled = true;
-                Parametr_TextBox.Visibility = Visibility.Visible;
-                Parametr_TextBox.IsEnabled = true;
+                parameter_Label.Visibility = Visibility.Visible;
+                parameter_Label.IsEnabled = true;
+                parameter_TextBox.Visibility = Visibility.Visible;
+                parameter_TextBox.IsEnabled = true;
             }
             else
             {
-                Parametr_Label.Visibility = Visibility.Hidden;
-                Parametr_Label.IsEnabled = false;
-                Parametr_TextBox.Visibility = Visibility.Hidden;
-                Parametr_TextBox.IsEnabled = false;
+                parameter_Label.Visibility = Visibility.Hidden;
+                parameter_Label.IsEnabled = false;
+                parameter_TextBox.Visibility = Visibility.Hidden;
+                parameter_TextBox.IsEnabled = false;
             }
             Console.WriteLine(selectedCipher);
         }

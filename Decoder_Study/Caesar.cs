@@ -5,7 +5,7 @@
         public Caesar(string n = "caesar") : base(n)
         { }
 
-        private static string UniversalCode(string code, int step)
+        private static string UniversalCode(string code = "", int step = 0)
         {
             string alphabet_ru_upper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
             string alphabet_ru_lower = alphabet_ru_upper.ToLower();

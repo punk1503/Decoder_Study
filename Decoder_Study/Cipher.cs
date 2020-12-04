@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Decoder_Study
+﻿namespace Decoder_Study
 {
     internal abstract class Cipher
     {
@@ -15,14 +9,14 @@ namespace Decoder_Study
             name = n;
         }
 
-        public virtual string Decode(string code, int parametr)
+        public virtual string Decode(string code, int parameter)
         {
-            return "Empty:" + code;
+            return "Empty";
         }
 
-        public virtual string Encode(string code, int parametr)
+        public virtual string Encode(string code, int parameter)
         {
-            return "Empty:" + code;
+            return "Empty";
         }
     }
 }
