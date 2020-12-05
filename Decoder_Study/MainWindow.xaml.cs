@@ -24,17 +24,12 @@ namespace Decoder_Study
 
         private void ShowParameter()
         {
-            currentCipher = new Caesar();
-            parameter_Label.Visibility = Visibility.Visible;
-            parameter_Label.IsEnabled = true;
             parameter_TextBox.Visibility = Visibility.Visible;
             parameter_TextBox.IsEnabled = true;
         }
 
         private void HideParameter()
         {
-            parameter_Label.Visibility = Visibility.Hidden;
-            parameter_Label.IsEnabled = false;
             parameter_TextBox.Visibility = Visibility.Hidden;
             parameter_TextBox.IsEnabled = false;
         }
