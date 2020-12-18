@@ -3,5 +3,8 @@
 
 #### Технологический стек
 * C#
-* WPF Framework
-* XAML
+* WPF(Windows Presentation Foundation) Framework
+* XAML (e**X**tensible **A**pplication **M**arkup **L**anguage))
+* WPF библиотека MaterialDesign
+
+место для изображения программы
