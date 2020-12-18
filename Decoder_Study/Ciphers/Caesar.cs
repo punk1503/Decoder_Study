@@ -3,7 +3,9 @@
     internal class Caesar : Cipher
     {
         public Caesar(string n = "caesar") : base(n)
-        { }
+        {
+            docDir = "..\\..\\Paragraphs\\ExampleFlowDocument.xaml";
+        }
 
         private static string UniversalCode(string code = "", int step = 0)
         {

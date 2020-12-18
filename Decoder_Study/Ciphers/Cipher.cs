@@ -3,6 +3,7 @@
     internal abstract class Cipher
     {
         private readonly string name;
+        public string docDir;
 
         public Cipher(string n = "empty")
         {

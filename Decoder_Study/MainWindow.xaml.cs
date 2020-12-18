@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Markup;
 
 namespace Decoder_Study
 {
@@ -12,6 +15,7 @@ namespace Decoder_Study
         private Cipher currentCipher = new Start();
         private int parameter = 0;
         private string selectedCipher;
+        private string currentDocString = null;
 
         public MainWindow()
         {
@@ -20,6 +24,14 @@ namespace Decoder_Study
             currentCipher = new Start();
             parameter = 0;
             selectedCipher = CipherComboBox.SelectedValue.ToString();
+        }
+
+        // converts .xaml to FlowDocument
+        private static FlowDocument SetRTF(string xamlString)
+        {
+            StringReader stringReader = new StringReader(xamlString);
+            System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(stringReader);
+            return XamlReader.Load(xmlReader) as FlowDocument;
         }
 
         private void ShowParameter()
@@ -63,11 +75,17 @@ namespace Decoder_Study
             {
                 HideParameter();
                 currentCipher = new Start();
+                DocView.Document = null;
             }
             if (selectedCipher == "1: Шифр Цезаря")
             {
                 ShowParameter();
                 currentCipher = new Caesar();
+                using (StreamReader reader = new StreamReader(currentCipher.docDir))
+                {
+                    currentDocString = reader.ReadToEnd();
+                }
+                DocView.Document = SetRTF(currentDocString);
             }
             else
             {

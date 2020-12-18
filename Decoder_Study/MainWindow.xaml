@@ -37,5 +37,6 @@
                 <Image Stretch="Fill" Source="Images/settings.ico" />
             </Button>
         </StackPanel>
+        <FlowDocumentScrollViewer Name="DocView" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Height="220" Width="471" Margin="5,0,5,5" />
     </Grid>
 </Window>
