@@ -1,0 +1,12 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:local="clr-namespace:Decoder_Study.Paragraphs"
+              ColumnWidth="400" FontSize="14" FontFamily="Georgia">
+    <Paragraph>
+        <Bold>Начало</Bold>
+    </Paragraph>
+    <Paragraph>
+        Данная программа предоставляет возможность изучить различные кодировки и шифры и проверить их действие при помощи
+        программных алгоритмов. Почти каждый шифр имеет функции Кодировки и Декодировки (некоторые шифры не подлежат раскодированию. например - хэш алгоритмы).
+        Некоторые шифры требуют введения дополнительного параметра. В этом случае соответствующее поле для ввода появится снизу поля выбора шифра.
+    </Paragraph>
+</FlowDocument>

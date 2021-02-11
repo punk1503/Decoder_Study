@@ -2,12 +2,11 @@
 {
     internal abstract class Cipher
     {
-        private readonly string name;
+        protected string name;
         public string docDir;
 
-        public Cipher(string n = "empty")
+        public Cipher()
         {
-            name = n;
         }
 
         public virtual string Decode(string code, int parameter)

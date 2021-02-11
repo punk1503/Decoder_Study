@@ -75,7 +75,11 @@ namespace Decoder_Study
             {
                 HideParameter();
                 currentCipher = new Start();
-                DocView.Document = null;
+                using (StreamReader reader = new StreamReader(currentCipher.docDir))
+                {
+                    currentDocString = reader.ReadToEnd();
+                }
+                DocView.Document = SetRTF(currentDocString);
             }
             if (selectedCipher == "1: Шифр Цезаря")
             {
