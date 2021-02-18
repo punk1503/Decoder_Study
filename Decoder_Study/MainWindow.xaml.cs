@@ -34,18 +34,12 @@ namespace Decoder_Study
             return XamlReader.Load(xmlReader) as FlowDocument;
         }
 
-        private void ShowParameter()
+        private void ParameterSwitch(bool enabled = true, string parameterLabelText = "Параметр")
         {
-            parameter_TextBox.Visibility = Visibility.Visible;
-            parameter_TextBox.IsEnabled = true;
+            parameter_TextBox.IsEnabled = enabled;
+            parameter_TextBox.Visibility = enabled ? Visibility.Visible : Visibility.Hidden;
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(parameter_TextBox, parameterLabelText);
         }
-
-        private void HideParameter()
-        {
-            parameter_TextBox.Visibility = Visibility.Hidden;
-            parameter_TextBox.IsEnabled = false;
-        }
-
         private void Encode_Click(object sender, RoutedEventArgs e)
         {
             Int32.TryParse(parameter_TextBox.Text, out parameter);
@@ -73,7 +67,7 @@ namespace Decoder_Study
             selectedCipher = CipherComboBox.SelectedValue.ToString();
             if (selectedCipher == "0: Начало")
             {
-                HideParameter();
+                ParameterSwitch(false);
                 currentCipher = new Start();
                 using (StreamReader reader = new StreamReader(currentCipher.docDir))
                 {
@@ -81,9 +75,9 @@ namespace Decoder_Study
                 }
                 DocView.Document = SetRTF(currentDocString);
             }
-            if (selectedCipher == "1: Шифр Цезаря")
+            else if (selectedCipher == "1: Шифр Цезаря")
             {
-                ShowParameter();
+                ParameterSwitch(true, "Сдвиг по алфавиту");
                 currentCipher = new Caesar();
                 using (StreamReader reader = new StreamReader(currentCipher.docDir))
                 {
@@ -93,9 +87,8 @@ namespace Decoder_Study
             }
             else
             {
-                HideParameter();
+                ParameterSwitch(false);
             }
-            Console.WriteLine(selectedCipher);
         }
     }
 }
