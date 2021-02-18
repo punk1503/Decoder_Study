@@ -7,4 +7,4 @@
 * XAML (e**X**tensible **A**pplication **M**arkup **L**anguage))
 * WPF библиотека MaterialDesign
 
-место для изображения программы
+![Programm Appearance](https://i.imgur.com/OHlwk4S.png)
