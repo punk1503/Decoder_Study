@@ -6,6 +6,8 @@
         {
             name = "caesar";
             docDir = "..\\..\\Paragraphs\\Caesar.xaml";
+            parameterRequired = true;
+            parameterHintText = "Шаг по алфавиту";
         }
 
         private static string UniversalCode(string code = "", int step = 0)

@@ -12,6 +12,7 @@ namespace Decoder_Study
         {
             name = "start";
             docDir = "..\\..\\Paragraphs\\Start.xaml";
+            parameterRequired = false;
         }
     }
 }
