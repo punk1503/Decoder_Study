@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Markup;
+using System.Collections.Generic;
 
 namespace Decoder_Study
 {
@@ -17,6 +18,12 @@ namespace Decoder_Study
         private string selectedCipher;
         private string currentDocString = null;
 
+        //var x = myDictionary["BaseClass"]();
+        private Dictionary<string, Func<Cipher>> nameToClass = new Dictionary<string, Func<Cipher>>
+        {
+            {"0: Начало", () => new Start()}, 
+            {"1: Шифр Цезаря", () => new Caesar()}
+        };
         public MainWindow()
         {
             InitializeComponent();
@@ -34,18 +41,12 @@ namespace Decoder_Study
             return XamlReader.Load(xmlReader) as FlowDocument;
         }
 
-        private void ShowParameter()
+        private void ParameterSwitch(bool enabled = true, string parameterHintText = "Параметр")
         {
-            parameter_TextBox.Visibility = Visibility.Visible;
-            parameter_TextBox.IsEnabled = true;
+            parameter_TextBox.IsEnabled = enabled;
+            parameter_TextBox.Visibility = enabled ? Visibility.Visible : Visibility.Hidden;
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(parameter_TextBox, parameterHintText);
         }
-
-        private void HideParameter()
-        {
-            parameter_TextBox.Visibility = Visibility.Hidden;
-            parameter_TextBox.IsEnabled = false;
-        }
-
         private void Encode_Click(object sender, RoutedEventArgs e)
         {
             Int32.TryParse(parameter_TextBox.Text, out parameter);
@@ -71,31 +72,13 @@ namespace Decoder_Study
         private void Cipher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedCipher = CipherComboBox.SelectedValue.ToString();
-            if (selectedCipher == "0: Начало")
+            currentCipher = nameToClass[selectedCipher]();
+            ParameterSwitch(currentCipher.parameterRequired, currentCipher.parameterHintText);
+            using (StreamReader reader = new StreamReader(currentCipher.docDir))
             {
-                HideParameter();
-                currentCipher = new Start();
-                using (StreamReader reader = new StreamReader(currentCipher.docDir))
-                {
-                    currentDocString = reader.ReadToEnd();
-                }
-                DocView.Document = SetRTF(currentDocString);
+                currentDocString = reader.ReadToEnd();
             }
-            if (selectedCipher == "1: Шифр Цезаря")
-            {
-                ShowParameter();
-                currentCipher = new Caesar();
-                using (StreamReader reader = new StreamReader(currentCipher.docDir))
-                {
-                    currentDocString = reader.ReadToEnd();
-                }
-                DocView.Document = SetRTF(currentDocString);
-            }
-            else
-            {
-                HideParameter();
-            }
-            Console.WriteLine(selectedCipher);
+            DocView.Document = SetRTF(currentDocString);\
         }
     }
 }
