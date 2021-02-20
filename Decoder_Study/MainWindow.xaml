@@ -1,10 +1,9 @@
 ﻿<Window ResizeMode="CanMinimize" x:Class="Decoder_Study.MainWindow"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Decoder_Study"
         mc:Ignorable="d"
         Title="Decoder Study" Height="450" Width="699.6">
     <Grid>
@@ -26,16 +25,9 @@
             <ComboBox materialDesign:HintAssist.Hint="Выберите алгоритм" Style="{StaticResource MaterialDesignFloatingHintComboBox}" x:Name="CipherComboBox" SelectedValuePath="Content" SelectionChanged="Cipher_SelectionChanged" Margin="10,0,10,0">
                 <ComboBoxItem x:Name="StartComboBoxItem" Content="0: Начало" />
                 <ComboBoxItem x:Name="CaesarComboBoxItem" Content="1: Шифр Цезаря" />
+                <ComboBoxItem x:Name="VigenerComboBoxItem" Content="2: Шифр Виженера" />
             </ComboBox>
             <TextBox materialDesign:HintAssist.Hint="Параметр" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="parameter_TextBox" Visibility="Hidden" IsEnabled="False" Margin="10,0,10,0" />
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" Orientation="Vertical" Margin="0,0,107,0">
-            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Padding="5" Margin="10" Width="50" Height="50">
-                <Image Stretch="Fill" Source="Images/info.ico" />
-            </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionButton}" Padding="5" Margin="10" Width="50" Height="50">
-                <Image Stretch="Fill" Source="Images/settings.ico" />
-            </Button>
         </StackPanel>
         <FlowDocumentScrollViewer Padding="5" Name="DocView" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Height="220" Width="471" Margin="5,0,5,5" />
     </Grid>

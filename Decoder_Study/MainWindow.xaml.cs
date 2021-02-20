@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Markup;
-using System.Collections.Generic;
 
 namespace Decoder_Study
 {
@@ -14,7 +14,6 @@ namespace Decoder_Study
     public partial class MainWindow : Window
     {
         private Cipher currentCipher = new Start();
-        private int parameter = 0;
         private string selectedCipher;
         private string currentDocString = null;
 
@@ -22,7 +21,8 @@ namespace Decoder_Study
         private Dictionary<string, Func<Cipher>> nameToClass = new Dictionary<string, Func<Cipher>>
         {
             {"0: Начало", () => new Start()},
-            {"1: Шифр Цезаря", () => new Caesar()}
+            {"1: Шифр Цезаря", () => new Caesar()},
+            {"2: Шифр Виженера", () => new Vigener()},
         };
 
         public MainWindow()
@@ -30,7 +30,6 @@ namespace Decoder_Study
             InitializeComponent();
             StartComboBoxItem.IsSelected = true;
             currentCipher = new Start();
-            parameter = 0;
             selectedCipher = CipherComboBox.SelectedValue.ToString();
         }
 
@@ -54,7 +53,7 @@ namespace Decoder_Study
             try
             {
                 Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parameter_TextBox.Text);
-                Console.WriteLine("Encode");
+                Console.WriteLine("LOG: Encode");
             }
             catch { Console.WriteLine("LOG: exception occured in Encode_Click"); }
         }
@@ -74,11 +73,18 @@ namespace Decoder_Study
             selectedCipher = CipherComboBox.SelectedValue.ToString();
             currentCipher = nameToClass[selectedCipher]();
             ParameterSwitch(currentCipher.parameterRequired, currentCipher.parameterHintText);
-            using (StreamReader reader = new StreamReader(currentCipher.docDir))
+            try
             {
-                currentDocString = reader.ReadToEnd();
+                using (StreamReader reader = new StreamReader(currentCipher.docDir))
+                {
+                    currentDocString = reader.ReadToEnd();
+                }
+                DocView.Document = SetRTF(currentDocString);
             }
-            DocView.Document = SetRTF(currentDocString);
+            catch
+            {
+                Console.WriteLine("LOG: No such paragraph file exception");
+            }
         }
     }
 }
