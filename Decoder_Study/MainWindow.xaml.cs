@@ -21,9 +21,10 @@ namespace Decoder_Study
         //var x = myDictionary["BaseClass"]();
         private Dictionary<string, Func<Cipher>> nameToClass = new Dictionary<string, Func<Cipher>>
         {
-            {"0: Начало", () => new Start()}, 
+            {"0: Начало", () => new Start()},
             {"1: Шифр Цезаря", () => new Caesar()}
         };
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,12 +48,12 @@ namespace Decoder_Study
             parameter_TextBox.Visibility = enabled ? Visibility.Visible : Visibility.Hidden;
             MaterialDesignThemes.Wpf.HintAssist.SetHint(parameter_TextBox, parameterHintText);
         }
+
         private void Encode_Click(object sender, RoutedEventArgs e)
         {
-            Int32.TryParse(parameter_TextBox.Text, out parameter);
             try
             {
-                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parameter);
+                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parameter_TextBox.Text);
                 Console.WriteLine("Encode");
             }
             catch { Console.WriteLine("LOG: exception occured in Encode_Click"); }
@@ -60,10 +61,9 @@ namespace Decoder_Study
 
         private void Decode_Click(object sender, RoutedEventArgs e)
         {
-            Int32.TryParse(parameter_TextBox.Text, out parameter);
             try
             {
-                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text, parameter);
+                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text, parameter_TextBox.Text);
                 Console.WriteLine("LOG: Decode");
             }
             catch { Console.WriteLine("LOG: exception occured in Decode_Click"); }
@@ -78,7 +78,7 @@ namespace Decoder_Study
             {
                 currentDocString = reader.ReadToEnd();
             }
-            DocView.Document = SetRTF(currentDocString);\
+            DocView.Document = SetRTF(currentDocString);
         }
     }
 }
