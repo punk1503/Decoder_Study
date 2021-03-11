@@ -1,4 +1,6 @@
-﻿namespace Decoder_Study
+﻿using System;
+
+namespace Decoder_Study
 {
     internal class Caesar : Cipher
     {
@@ -47,13 +49,17 @@
             return output;
         }
 
-        public override string Encode(string code, int step)
+        public override string Encode(string code, string parameter)
         {
+            int step;
+            Int32.TryParse(parameter, out step);
             return UniversalCode(code, step);
         }
 
-        public override string Decode(string code, int step)
+        public override string Decode(string code, string parameter)
         {
+            int step;
+            Int32.TryParse(parameter, out step);
             return UniversalCode(code, -step);
         }
     }

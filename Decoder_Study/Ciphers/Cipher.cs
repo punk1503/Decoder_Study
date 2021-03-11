@@ -11,12 +11,12 @@
         {
         }
 
-        public virtual string Decode(string code, int parameter)
+        public virtual string Decode(string code, string parameter)
         {
             return null;
         }
 
-        public virtual string Encode(string code, int parameter)
+        public virtual string Encode(string code, string parameter)
         {
             return null;
         }

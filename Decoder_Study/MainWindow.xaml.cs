@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Markup;
-using System.Collections.Generic;
 
 namespace Decoder_Study
 {
@@ -14,22 +14,22 @@ namespace Decoder_Study
     public partial class MainWindow : Window
     {
         private Cipher currentCipher = new Start();
-        private int parameter = 0;
         private string selectedCipher;
         private string currentDocString = null;
 
         //var x = myDictionary["BaseClass"]();
         private Dictionary<string, Func<Cipher>> nameToClass = new Dictionary<string, Func<Cipher>>
         {
-            {"0: Начало", () => new Start()}, 
-            {"1: Шифр Цезаря", () => new Caesar()}
+            {"0: Начало", () => new Start()},
+            {"1: Шифр Цезаря", () => new Caesar()},
+            {"2: Шифр Виженера", () => new Vigenere()},
         };
+
         public MainWindow()
         {
             InitializeComponent();
             StartComboBoxItem.IsSelected = true;
             currentCipher = new Start();
-            parameter = 0;
             selectedCipher = CipherComboBox.SelectedValue.ToString();
         }
 
@@ -47,23 +47,22 @@ namespace Decoder_Study
             parameter_TextBox.Visibility = enabled ? Visibility.Visible : Visibility.Hidden;
             MaterialDesignThemes.Wpf.HintAssist.SetHint(parameter_TextBox, parameterHintText);
         }
+
         private void Encode_Click(object sender, RoutedEventArgs e)
         {
-            Int32.TryParse(parameter_TextBox.Text, out parameter);
             try
             {
-                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parameter);
-                Console.WriteLine("Encode");
+                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parameter_TextBox.Text);
+                Console.WriteLine("LOG: Encode");
             }
             catch { Console.WriteLine("LOG: exception occured in Encode_Click"); }
         }
 
         private void Decode_Click(object sender, RoutedEventArgs e)
         {
-            Int32.TryParse(parameter_TextBox.Text, out parameter);
             try
             {
-                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text, parameter);
+                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text, parameter_TextBox.Text);
                 Console.WriteLine("LOG: Decode");
             }
             catch { Console.WriteLine("LOG: exception occured in Decode_Click"); }
@@ -74,11 +73,18 @@ namespace Decoder_Study
             selectedCipher = CipherComboBox.SelectedValue.ToString();
             currentCipher = nameToClass[selectedCipher]();
             ParameterSwitch(currentCipher.parameterRequired, currentCipher.parameterHintText);
-            using (StreamReader reader = new StreamReader(currentCipher.docDir))
+            try
             {
-                currentDocString = reader.ReadToEnd();
+                using (StreamReader reader = new StreamReader(currentCipher.docDir))
+                {
+                    currentDocString = reader.ReadToEnd();
+                }
+                DocView.Document = SetRTF(currentDocString);
             }
-            DocView.Document = SetRTF(currentDocString);\
+            catch
+            {
+                Console.WriteLine("LOG: No such paragraph file exception");
+            }
         }
     }
 }
