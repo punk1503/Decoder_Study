@@ -77,12 +77,16 @@
     </Compile>
     <Compile Include="Ciphers\Caesar.cs" />
     <Compile Include="Ciphers\Cipher.cs" />
-    <Compile Include="Ciphers\Vigener.cs" />
+    <Compile Include="Ciphers\Vigenere.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Paragraphs\Caesar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paragraphs\Vigenere.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
