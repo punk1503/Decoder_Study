@@ -23,6 +23,7 @@ namespace Decoder_Study
             {"0: Начало", () => new Start()},
             {"1: Шифр Цезаря", () => new Caesar()},
             {"2: Шифр Виженера", () => new Vigenere()},
+            {"3: HEX кодирование", () => new Hex() },
         };
 
         public MainWindow()
