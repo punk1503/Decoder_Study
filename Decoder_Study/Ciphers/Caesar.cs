@@ -4,10 +4,8 @@ namespace Decoder_Study
 {
     internal class Caesar : Cipher
     {
-        public Caesar() : base()
+        public Caesar() : base("Caesar")
         {
-            name = "caesar";
-            docDir = "..\\..\\Paragraphs\\Caesar.xaml";
             parameterRequired = true;
             parameterHintText = "Шаг по алфавиту";
         }

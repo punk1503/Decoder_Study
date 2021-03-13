@@ -7,8 +7,10 @@
         public bool parameterRequired;
         public string parameterHintText = "Параметр";
 
-        public Cipher()
+        public Cipher(string name_param)
         {
+            name = name_param;
+            docDir = $"..\\..\\Paragraphs\\{name_param}.xaml";
         }
 
         public virtual string Decode(string code, string parameter)
