@@ -78,6 +78,7 @@
     <Compile Include="Ciphers\Caesar.cs" />
     <Compile Include="Ciphers\Cipher.cs" />
     <Compile Include="Ciphers\Vigenere.cs" />
+    <Compile Include="Ciphers\Xor.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
