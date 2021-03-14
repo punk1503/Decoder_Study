@@ -30,7 +30,6 @@ namespace Decoder_Study
         public override string Encode(string code, string parameter)
         {
             string result = String.Empty;
-            code = code.Replace(" ", "");
             for (int i = 0; i < code.Length; i++)
             {
                 result += string.Format("{0:x2}", (byte)code[i]);
