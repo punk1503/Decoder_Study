@@ -5,7 +5,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Decoder Study" Height="450" Width="699.6">
+        Title="Decoder Study" Height="450" Width="699.6"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="476"></ColumnDefinition>
@@ -23,9 +24,9 @@
 
         <StackPanel VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Orientation="Vertical" Margin="0,0,111,0" Height="82">
             <ComboBox materialDesign:HintAssist.Hint="Выберите алгоритм" Style="{StaticResource MaterialDesignFloatingHintComboBox}" x:Name="CipherComboBox" SelectedValuePath="Content" SelectionChanged="Cipher_SelectionChanged" Margin="10,0,10,0">
-                <ComboBoxItem x:Name="StartComboBoxItem" Content="0: Начало" />
+                <!--<ComboBoxItem x:Name="StartComboBoxItem" Content="0: Начало" />
                 <ComboBoxItem x:Name="CaesarComboBoxItem" Content="1: Шифр Цезаря" />
-                <ComboBoxItem x:Name="VigenerComboBoxItem" Content="2: Шифр Виженера" />
+                <ComboBoxItem x:Name="VigenerComboBoxItem" Content="2: Шифр Виженера" />-->
             </ComboBox>
             <TextBox materialDesign:HintAssist.Hint="Параметр" Style="{StaticResource MaterialDesignFloatingHintTextBox}" x:Name="parameter_TextBox" Visibility="Hidden" IsEnabled="False" Margin="10,0,10,0" />
         </StackPanel>
