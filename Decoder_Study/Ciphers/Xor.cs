@@ -34,9 +34,8 @@ namespace Decoder_Study
                 result += Convert.ToChar(Convert.ToUInt32(code.Substring(i, 2), 16) ^ parameter[i % parameter.Length]);
             }
             return result;
-            /*Добрый день, господа. Сегодня мы будем реализовывать алгоритм XOR шифрования.
-             Все, что мне осталось сделать - это декодирование строчки, состоящей из base16
-            значений в полноценные ASCII символы*/
         }
+
+        //Seems to work incorrectly: try 'hello' and 'cringe' XOR example
     }
 }
