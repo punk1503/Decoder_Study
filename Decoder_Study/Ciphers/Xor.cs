@@ -26,7 +26,17 @@ namespace Decoder_Study
 
         public override string Decode(string code, string parameter)
         {
-            return base.Decode(code, parameter);
+            code = code.Replace(" ", "");
+
+            string result = "";
+            for (int i = 0; i < code.Length; i += 2)
+            {
+                result += Convert.ToChar(Convert.ToUInt32(code.Substring(i, 2), 16) ^ parameter[i % parameter.Length]);
+            }
+            return result;
+            /*Добрый день, господа. Сегодня мы будем реализовывать алгоритм XOR шифрования.
+             Все, что мне осталось сделать - это декодирование строчки, состоящей из base16
+            значений в полноценные ASCII символы*/
         }
     }
 }
