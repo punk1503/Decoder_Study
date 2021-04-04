@@ -24,6 +24,7 @@ namespace Decoder_Study
             {"0: Начало", () => new Start()},
             {"1: Шифр Цезаря", () => new Caesar()},
             {"2: Шифр Виженера", () => new Vigenere()},
+            {"4: XOR", () => new Xor() }
         };
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
