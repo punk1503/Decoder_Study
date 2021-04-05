@@ -8,6 +8,8 @@ namespace Decoder_Study
 {
     internal class Hex : Cipher
     {
+        private Encoding enc_1251 = Encoding.GetEncoding(1251);
+
         public Hex()
         {
             name = "Hex";
@@ -17,11 +19,17 @@ namespace Decoder_Study
 
         public override string Decode(string code, string parameter)
         {
-            string result = String.Empty;
-            code = code.Replace(" ", "");
-            for (int i = 0; i < code.Length; i += 2)
+            string result = "";
+
+            List<String> hex_values = code.Split(' ').ToList();
+            foreach (string val in hex_values)
             {
-                result += Convert.ToChar(Convert.ToUInt32(code.Substring(i, 2), 16));
+                /*1. перевести значение в 10 СС
+                 2. получить из этого значения букву
+                 3. добавить эту букву в result*/
+                int decimal_val = Convert.ToInt32(val, 16);
+                string letter = enc_1251.GetString(new byte[] { (byte)decimal_val });
+                result += letter;
             }
 
             return result;
