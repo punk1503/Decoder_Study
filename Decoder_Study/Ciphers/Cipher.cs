@@ -3,7 +3,7 @@
     internal abstract class Cipher
     {
         public string name;
-        public string docDir;
+        public string docDir = "..\\..\\Paragraphs\\";
         public bool parameterRequired;
         public string parameterHintText = "Параметр";
 

@@ -24,6 +24,7 @@ namespace Decoder_Study
             {"0: Начало", () => new Start()},
             {"1: Шифр Цезаря", () => new Caesar()},
             {"2: Шифр Виженера", () => new Vigenere()},
+            {"3: HEX кодирование", () => new Hex() },
             {"4: XOR", () => new Xor() }
         };
 
@@ -60,7 +61,7 @@ namespace Decoder_Study
         {
             try
             {
-                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parameter_TextBox.Text);
+                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text.Trim(), parameter_TextBox.Text).Trim();
                 Console.WriteLine("LOG: Encode");
             }
             catch { Console.WriteLine("LOG: exception occured in Encode_Click"); }
@@ -70,7 +71,7 @@ namespace Decoder_Study
         {
             try
             {
-                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text, parameter_TextBox.Text);
+                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text.Trim(), parameter_TextBox.Text).Trim();
                 Console.WriteLine("LOG: Decode");
             }
             catch { Console.WriteLine("LOG: exception occured in Decode_Click"); }
