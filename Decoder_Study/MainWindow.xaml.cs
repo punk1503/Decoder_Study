@@ -53,7 +53,7 @@ namespace Decoder_Study
         {
             try
             {
-                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text, parameter_TextBox.Text);
+                Output_TextBox.Text = currentCipher.Encode(Input_TextBox.Text.Trim(), parameter_TextBox.Text).Trim();
                 Console.WriteLine("LOG: Encode");
             }
             catch { Console.WriteLine("LOG: exception occured in Encode_Click"); }
@@ -63,7 +63,7 @@ namespace Decoder_Study
         {
             try
             {
-                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text, parameter_TextBox.Text);
+                Output_TextBox.Text = currentCipher.Decode(Input_TextBox.Text.Trim(), parameter_TextBox.Text).Trim();
                 Console.WriteLine("LOG: Decode");
             }
             catch { Console.WriteLine("LOG: exception occured in Decode_Click"); }

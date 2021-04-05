@@ -37,10 +37,14 @@ namespace Decoder_Study
 
         public override string Encode(string code, string parameter)
         {
-            string result = String.Empty;
-            for (int i = 0; i < code.Length; i++)
+            string result = "";
+            /*1. переводим строчку в набор чисел в 10 СС
+            2. переводим 10СС в 16СС
+            3. добавляем значение и пробел в result*/
+            byte[] decimal_values = enc_1251.GetBytes(code);
+            foreach (byte val in decimal_values)
             {
-                result += string.Format("{0:x2}", (byte)code[i]);
+                result += val.ToString("X") + ' ';
             }
 
             return result;
