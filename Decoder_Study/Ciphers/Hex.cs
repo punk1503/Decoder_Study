@@ -10,9 +10,8 @@ namespace Decoder_Study
     {
         private Encoding enc_1251 = Encoding.GetEncoding(1251);
 
-        public Hex()
+        public Hex() : base("Xor")
         {
-            name = "Hex";
             docDir = docDir + name + ".xaml";
             parameterRequired = false;
         }
