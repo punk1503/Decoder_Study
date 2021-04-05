@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -24,14 +25,21 @@ namespace Decoder_Study
             {"1: Шифр Цезаря", () => new Caesar()},
             {"2: Шифр Виженера", () => new Vigenere()},
             {"3: HEX кодирование", () => new Hex() },
+            {"4: XOR", () => new Xor() }
         };
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(nameToClass.Keys.ToArray());
+            CipherComboBox.ItemsSource = nameToClass.Keys.ToArray();
+            CipherComboBox.SelectedIndex = 0;
+            selectedCipher = nameToClass.Keys.ToArray()[0];
+            currentCipher = nameToClass[selectedCipher]();
+        }
 
         public MainWindow()
         {
             InitializeComponent();
-            StartComboBoxItem.IsSelected = true;
-            currentCipher = new Start();
-            selectedCipher = CipherComboBox.SelectedValue.ToString();
         }
 
         // converts .xaml to FlowDocument
@@ -71,7 +79,7 @@ namespace Decoder_Study
 
         private void Cipher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedCipher = CipherComboBox.SelectedValue.ToString();
+            selectedCipher = CipherComboBox.SelectedItem.ToString();
             currentCipher = nameToClass[selectedCipher]();
             ParameterSwitch(currentCipher.parameterRequired, currentCipher.parameterHintText);
             try

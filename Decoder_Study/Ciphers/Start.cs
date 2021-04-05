@@ -2,10 +2,8 @@
 {
     internal class Start : Cipher
     {
-        public Start() : base()
+        public Start() : base("Start")
         {
-            name = "start";
-            docDir = "..\\..\\Paragraphs\\Start.xaml";
             parameterRequired = false;
         }
     }

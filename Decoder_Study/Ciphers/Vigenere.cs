@@ -4,10 +4,8 @@ namespace Decoder_Study
 {
     internal class Vigenere : Cipher
     {
-        public Vigenere() : base()
+        public Vigenere() : base("Vigenere")
         {
-            name = "vigenere";
-            docDir = "..\\..\\Paragraphs\\Vigenere.xaml";
             parameterRequired = true;
             parameterHintText = "Ключевое слово";
         }

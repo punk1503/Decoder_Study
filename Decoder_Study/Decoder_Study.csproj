@@ -79,6 +79,7 @@
     <Compile Include="Ciphers\Caesar.cs" />
     <Compile Include="Ciphers\Cipher.cs" />
     <Compile Include="Ciphers\Vigenere.cs" />
+    <Compile Include="Ciphers\Xor.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -92,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paragraphs\Start.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paragraphs\Xor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
