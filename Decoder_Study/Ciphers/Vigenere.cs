@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Decoder_Study
 {
@@ -14,13 +15,20 @@ namespace Decoder_Study
         {
             string result = "";
             string alphabet_en_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            code = code.ToUpper();
-            parameter = parameter.ToUpper();
+
             for (int i = 0; i < code.Length; i++)
             {
-                if (alphabet_en_upper.Contains(code[i]))
+                /*
+                1. находим букву, с которой будет идти смещение для текущей code[i]
+                2. находим индекс буквы параметра в алфавите
+                3. берем из алфавита букву по индексу (индекс code[i] + индекс буквы параметра)
+                4. добавляем букву в result
+                */
+                if (alphabet_en_upper.Contains(char.ToUpper(code[i])))
                 {
-                    result += alphabet_en_upper[(alphabet_en_upper.IndexOf(code[i]) + alphabet_en_upper.IndexOf(parameter[i % parameter.Length])) % alphabet_en_upper.Length];
+                    int offset_index = alphabet_en_upper.IndexOf(char.ToUpper(parameter[i % parameter.Length]));
+                    char new_letter = alphabet_en_upper[(alphabet_en_upper.IndexOf(char.ToUpper(code[i])) + offset_index) % alphabet_en_upper.Length];
+                    result += char.IsUpper(code[i]) ? new_letter : char.ToLower(new_letter);
                 }
                 else
                 {
@@ -33,12 +41,14 @@ namespace Decoder_Study
         public override string Decode(string code, string parameter)
         {
             string result = "";
-            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string alphabet_en_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             for (int i = 0; i < code.Length; i++)
             {
-                if (alphabet.Contains(code[i]))
+                if (alphabet_en_upper.Contains(char.ToUpper(code[i])))
                 {
-                    result += alphabet[(alphabet.IndexOf(code[i]) + alphabet.Length - alphabet.IndexOf(parameter[i % parameter.Length])) % alphabet.Length];
+                    int offset_index = alphabet_en_upper.IndexOf(char.ToUpper(parameter[i % parameter.Length]));
+                    char new_letter = alphabet_en_upper[(alphabet_en_upper.IndexOf(char.ToUpper(code[i])) + alphabet_en_upper.Length - offset_index) % alphabet_en_upper.Length];
+                    result += char.IsUpper(code[i]) ? new_letter : char.ToLower(new_letter);
                 }
                 else
                 {
