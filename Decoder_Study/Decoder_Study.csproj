@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Ciphers\Alias.cs" />
     <Compile Include="Ciphers\Hex.cs" />
     <Compile Include="Ciphers\Start.cs" />
     <Page Include="MainWindow.xaml">
