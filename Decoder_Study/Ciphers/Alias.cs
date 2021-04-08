@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Decoder_Study
@@ -46,6 +47,54 @@ namespace Decoder_Study
                 result += grouped_values[i];
             }
 
+            return result;
+        }
+
+        public override string Decode(string code, string parameter)
+        {
+            string result = "";
+
+            code = code.Replace(" ", "");
+            bool first_char_zero = code[0] == 0;
+            code = code.Substring(1);
+            List<int> alias_fragments_values = new List<int>();
+            int zero_counter = 0;
+            for (int i = 0; i < code.Length; i++)
+            {
+                if (code[i] == '0')
+                {
+                    zero_counter++;
+                }
+                else
+                {
+                    alias_fragments_values.Add(Convert.ToInt32(code.Substring(i - zero_counter, zero_counter * 2 + 1), 2));
+                    i += zero_counter;
+                    zero_counter = 0;
+                }
+            }
+            string result_binary = "";
+            foreach (int value in alias_fragments_values)
+            {
+                if (first_char_zero)
+                {
+                    result_binary += string.Concat(Enumerable.Repeat("0", value));
+                }
+                else
+                {
+                    result_binary += string.Concat(Enumerable.Repeat("1", value));
+                }
+                first_char_zero = !first_char_zero;
+            }
+
+            for (int i = 0; i < result_binary.Length; i += 4)
+            {
+            }
+            /*for (int i = 0; i < result_binary.Length; i += 8)
+            {
+                int ascii_val = Convert.ToInt32(result_binary.Substring(i, 8), 2);
+                byte[] b = { (byte)Convert.ToInt32(result_binary.Substring(i, 8), 2) };
+                result += enc.GetString(b);
+            }*/
             return result;
         }
     }
