@@ -85,6 +85,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Paragraphs\Alias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paragraphs\Caesar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

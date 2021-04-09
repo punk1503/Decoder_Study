@@ -86,13 +86,8 @@ namespace Decoder_Study
                 first_char_zero = !first_char_zero;
             }
 
-            /*for (int i = 0; i < result_binary.Length; i += 4)
-            {
-                string hex_val = result_binary.Substring(i, 4);
-            }*/
             for (int i = 0; i < result_binary.Length; i += 8)
             {
-                int ascii_val = Convert.ToInt32(result_binary.Substring(i, 8), 2);
                 byte[] b = { (byte)Convert.ToInt32(result_binary.Substring(i, 8), 2) };
                 result += enc.GetString(b);
             }
