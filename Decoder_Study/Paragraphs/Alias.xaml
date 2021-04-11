@@ -1,0 +1,90 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:local="clr-namespace:Decoder_Study.Paragraphs"
+              ColumnWidth="400" FontSize="14" FontFamily="Georgia">
+    <Paragraph>
+        <Bold>Кодирование Элиаса</Bold>
+    </Paragraph>
+    <Paragraph>
+        Кодирование Элиаса было изобретенно Питером Элиасом. Является крайне популярным алгоритмом для кодирования
+	целых положительных чисел, что соотвественно делает его весьма удобным для кодирования буквенных символов.
+	Помимо этого алгоритм Элиаса помогает ужать данные, затраченные на большое количество повторяющихся символов.
+	Алгоритм помогает сжать данные без каких-либо математических потерь.
+    </Paragraph>
+    <Paragraph>
+        <Bold>Кодирование</Bold>
+    </Paragraph>
+    <Paragraph>
+        Сам алгоритм кодирования Элиаса является довольно трудным и громоздким.
+	Для начала мы переводим все символы в двоичную СС и запоминаем первый символ в двоичной системе: он нам понадобится в конце.
+	После этого мы делим запись на блоки повторяющихся чисел.
+        <LineBreak></LineBreak>
+        То есть запись 110001 превращается в три блока 11 00 1 и тому подобное. После этого каждый такой блок заменяется
+	на его длину. Эти длины переводятся в двоичную систему и дополняются ведущими нулями в количестве,
+	равном количеству знаков после первой единицы: 100 превращается в 00100, а 1101 - в 0001101.
+	к этим блокам с левого края прибавляется запомненный нами в самом начале бит.
+    </Paragraph>
+    <Paragraph>
+        <Bold>Декодирование</Bold>
+    </Paragraph>
+    <Paragraph>
+        Берём задачу:
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        1010 0110 0010 0010 1001 0100 1001
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Первый знак - начало чередования. Отделяем и запоминаем его
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        1 : 010 0110 0010 0010 1001 0100 1001
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Остальное рабиваем на фрагменты Элиаса. Напоминаю: Количество нулей перед единицей=количеству цифр после единицы, принадлежащих данному сегменту.
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        010  011  0001000  1  010  010  1  00100  1
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Убираем лишние нули
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        10  11  1000  1  10  10  1  100  1
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Переводим в А10(если надо):
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        2 3 8 1 2 2 1 4 1
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Выписываем чередуя единицы и нули. Начиная с цифры, с которой начиналось задание. 2 значит две цифры. 8 - значит восемь.
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        11 000 11111111 0 11 00 1 0000 1
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Объедениям по четыре:
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        1100 0111 1111 1011 0010 0001
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Переводим в А16:
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        С7 FB 21
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Переводим по ASCI:
+        <LineBreak></LineBreak>
+        <LineBreak></LineBreak>
+        Зы!
+    </Paragraph>
+    <Paragraph>
+        <Bold>Применение</Bold>
+    </Paragraph>
+    <Paragraph>
+        Как уже было сказано, используется он, когда у нас есть
+        большое количество данныз, размер которых определить сложно, а в них содержится много последовательностей повторяющихся символов.
+    </Paragraph>
+</FlowDocument>
