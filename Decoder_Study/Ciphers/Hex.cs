@@ -11,7 +11,6 @@ namespace Decoder_Study
 
         public Hex() : base("Hex")
         {
-            docDir = docDir + name + ".xaml";
             parameterRequired = false;
         }
 
