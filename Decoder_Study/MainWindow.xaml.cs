@@ -25,7 +25,8 @@ namespace Decoder_Study
             {"1: Шифр Цезаря", () => new Caesar()},
             {"2: Шифр Виженера", () => new Vigenere()},
             {"3: HEX кодирование", () => new Hex() },
-            {"4: XOR", () => new Xor() }
+            {"4: XOR", () => new Xor() },
+            {"5: Alias", () => new Alias() },
         };
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
