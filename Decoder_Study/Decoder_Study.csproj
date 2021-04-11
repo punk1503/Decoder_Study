@@ -89,6 +89,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paragraphs\BaseTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Paragraphs\Caesar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
